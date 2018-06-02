@@ -4,26 +4,47 @@ const Schema = mongoose.Schema;
 const CrowdSourceRequest = new Schema(
   {
     // model
-    name: String,
-    age: Number,
-    username: String,
-    summary: String,
-    bizVal: String,
-    forward: String,
-    contributions: {
+    FIRST_NAME: {
+      type: String,
+    },
+    LAST_NAME: {
+      type: String,
+    },
+    USERNAME:{
+      type: String,
+    },
+    CSR_SUMMARY: {
+      type: String,
+    },
+    CSR_BUSINESS_VALUE: {
+      type: String,
+    },
+    CSR_PAY_FORWARD_DESC: {
+      type: String,
+    },
+    CSR_FUNDING_AMT_REQ: {
+      type: Number,
+    },
+    CSR_FUNDING_DEADLINE: {
+      type: Date,
+    },
+    CONTRIBUTIONS: {
       type: Array,
       default: []
     },
-    status: {
+    CSR_STATUS: {
       type: String,
       enum: ["pending", "funded", "failed"],
       default: "pending"
+    },
+    CSR_STATUS_MESSAGE: {
+      type: String,
     }
   },
   {
     // options
     strict: false,
-    timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+    timestamps: { createdAt: "CREATED_AT", updatedAt: "UPDATED_AT"}
   }
 );
 

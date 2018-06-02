@@ -1,34 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Requests</title>
-</head>
-
-<body>
-    <%- include('./partials/header') %>
-        <h1>This is my home page</h1>
-      
-        <button class="btn btn-primary" onclick="showCreateModal()">Create New!</button>
-
-        
-        <% for(var i=0; i < requests.length; i++) { %>
-             <h3>
-
-              <%= requests[i].username %> <br>
-              <%= requests[i].summary %> <br>
-              <%= requests[i].bizVal %> <br>
-              <%= requests[i].forward %>
-              <button class="btn btn-info" onclick="viewRequestDetails( <%= i %> )">View Details</button>
-            </h3> 
-                
-        <% }%>
-
-
-    <!-- This is the modal -->
     <div id="createModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -39,7 +8,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <%- include('./partials/createNew') %>
+                    <%- include('./createNew') %>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="close('createModal')" data-dismiss="modal">Close</button>
@@ -48,6 +17,8 @@
             </div>
         </div>
     </div>
+
+
 
     <div id="detailsModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -64,11 +35,13 @@
                         <p id="summary"></p>
                     </div>  
                     <form id="fundForm" method="POST">
-                    <h1>PUT FORM HERE</h1>
-                    <h2>Use button below to submit form</h2>
-                    <input name="username" type="text" placeholder="Enter your name">
-                    <label for="">How much do you want to contribute</label>
-                    <input name="amount" type="number">
+                        <h1>PUT FORM HERE</h1>
+                        <h2>Use button below to submit form</h2>
+                        <input name="FUNDER_FIRST_NAME" type="text" placeholder="Enter your name">
+                        <input name="FUNDER_LAST_NAME" type="text" placeholder="Enter your name">
+                        <input name="FUNDER_USERNAME" type="text" placeholder="Enter your name">
+                        <label for="">How much do you want to contribute</label>
+                        <input name="FUNDING_AMT" type="number">
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -78,11 +51,3 @@
             </div>
         </div>
     </div>
-
-    <script>
-        var requests = <%- JSON.stringify(requests) %>;
-    </script>
-
-</body>
-
-</html>

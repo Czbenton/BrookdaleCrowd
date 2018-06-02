@@ -1,9 +1,7 @@
-console.log("loaded!");
 showCreateModal();
 let selectedRequest = {};
 
 function showCreateModal() {
-  console.log("clicked");
   $("#createModal").modal({
     backdrop: false,
     focus: true
