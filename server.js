@@ -31,7 +31,15 @@ server.get("/", (req, res) => {
     res.render("index", { requests: foundRequests });
   }).catch(err => console.log("there was an error"));
 });
-
+ 
+server.get("/viewDetails/:id", (req, res)=> {
+  const CSRId = req.params.id;
+  CSR.findById({ _id: CSRId },(err, foundRequest) => {
+    console.log(foundRequest);
+    res.render("details", { brookdaleCrowdItem: foundRequest });
+  }).catch(err => console.log("ERROR::", err));
+});
+       
 server.post("/create_new", (req, res) => {
   const newCSR = new CSR(req.body);
   newCSR.save().then(data => {

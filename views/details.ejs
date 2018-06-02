@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/header') %>
+
+<body>
+        <%= brookdaleCrowdItem.FIRST_NAME%> <br>
+        <%= brookdaleCrowdItem.LAST_NAME%><br>
+        <%= brookdaleCrowdItem.CSR_SUMMARY%><br>
+        <%= brookdaleCrowdItem.CSR_BUSINESS_VALUE%><br>
+        <%= brookdaleCrowdItem.CSR_PAY_FORWARD_DESC%><br>
+        <%= brookdaleCrowdItem.CSR_FUNDING_AMT_REQ%><br>
+        <%= brookdaleCrowdItem.CSR_FUNDING_DEADLINE%><br>
+        
+        <ul class="list-group">
+        <% for(var i=0; i < brookdaleCrowdItem.CONTRIBUTIONS.length; i++) { %>
+                <li class="list-group-item">
+                        <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_FIRST_NAME%>
+                </li>
+             </ul> 
+        <% }%>
+
+        <%= brookdaleCrowdItem.CONTRIBUTIONS%><br>
+
+        <%= brookdaleCrowdItem.CSR_STATUS%>
+</body>
+</html>

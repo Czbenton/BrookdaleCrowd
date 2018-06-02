@@ -20,6 +20,8 @@ function viewRequestDetails(index) {
   $("#detailsFundingAmtReq").html(selectedRequest.CSR_FUNDING_AMT_REQ);
   $("#detailsFundingDeadline").html(selectedRequest.CSR_FUNDING_DEADLINE);
   $("#contributions").html(selectedRequest.CONTRIBUTIONS);
+  console.log("lookhere::",selectedRequest.CONTRIBUTIONS)
+  // $("#contributions").html(selectedRequest.CONTRIBUTIONS[0].FUNDER_FIRST_NAME);
   
   $("#detailsModal").modal({
     backdrop: false,
