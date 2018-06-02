@@ -1,4 +1,4 @@
-<form id="fundForm" method="POST">
+<form id="fundForm" method="POST" action="/fund_request/<%= brookdaleCrowdItem._id%>">
     <div class="form-group">
         <label for="fundFname">First Name</label>
         <input id="fundFname" class="form-control" name="FUNDER_FIRST_NAME" type="text" placeholder="First Name">
@@ -15,4 +15,5 @@
         <label for="fundAmt">How much do you want to contribute?</label>
         <input id="fundAmt" class="form-control" name="FUNDING_AMT" type="number">
     </div>
+    <button type="submit" class="btn btn-outline-primary" >Fund now!!</button>
 </form>

@@ -20,7 +20,8 @@
                     <%= requests[i].CSR_SUMMARY %> 
                     <br>
                     <form action="/viewDetails/<%= requests[i]._id %>" method="GET">
-                        <button class="btn btn-sm btn-info" onclick="viewRequestDetails( <%= i %> )">View Details</button>
+                        <button class="btn btn-sm btn-info">View Details</button>
+                        <!-- <button class="btn btn-sm btn-info" onclick="viewRequestDetails( <%= i %> )">View Details</button> -->
                     </form>
                 </li>
              </ul> 

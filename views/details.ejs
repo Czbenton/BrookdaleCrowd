@@ -4,24 +4,48 @@
 <%- include('./partials/header') %>
 
 <body>
-        <%= brookdaleCrowdItem.FIRST_NAME%> <br>
-        <%= brookdaleCrowdItem.LAST_NAME%><br>
-        <%= brookdaleCrowdItem.CSR_SUMMARY%><br>
-        <%= brookdaleCrowdItem.CSR_BUSINESS_VALUE%><br>
-        <%= brookdaleCrowdItem.CSR_PAY_FORWARD_DESC%><br>
-        <%= brookdaleCrowdItem.CSR_FUNDING_AMT_REQ%><br>
-        <%= brookdaleCrowdItem.CSR_FUNDING_DEADLINE%><br>
-        
+        <%= brookdaleCrowdItem._id%>
+    <%= brookdaleCrowdItem.FIRST_NAME%> <br>
+    <%= brookdaleCrowdItem.LAST_NAME%><br>
+    <%= brookdaleCrowdItem.CSR_SUMMARY%><br>
+    <%= brookdaleCrowdItem.CSR_BUSINESS_VALUE%><br>
+    <%= brookdaleCrowdItem.CSR_PAY_FORWARD_DESC%><br>
+    <%= brookdaleCrowdItem.CSR_FUNDING_AMT_REQ%><br>
+    <%= brookdaleCrowdItem.CSR_FUNDING_DEADLINE%><br>
+
+
+<div class="card ">
+    <div class="card-header">
+    Contributors
+    </div>
+    <div class="card-body">
         <ul class="list-group">
-        <% for(var i=0; i < brookdaleCrowdItem.CONTRIBUTIONS.length; i++) { %>
+            <% for(var i=0; i < brookdaleCrowdItem.CONTRIBUTIONS.length; i++) { %>
                 <li class="list-group-item">
-                        <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_FIRST_NAME%>
+                    <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_FIRST_NAME%>
+                    <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_LAST_NAME%>
                 </li>
-             </ul> 
-        <% }%>
+            <% }%>
+        </ul> 
+    </div>
+</div>
 
-        <%= brookdaleCrowdItem.CONTRIBUTIONS%><br>
+<div style="width: 50%;">
+    <h1>________________</h1>
+    <%- include('./partials/fundingForm') %>
+</div>
 
-        <%= brookdaleCrowdItem.CSR_STATUS%>
+<% if (brookdaleCrowdItem.CSR_STATUS_MESSAGE) { %>
+    <div>
+        <p>Funding Status: <%= brookdaleCrowdItem.CSR_STATUS%> </p>
+        <p>Comments: <%= brookdaleCrowdItem.CSR_STATUS_MESSAGE%></p>
+    </div>
+  <% } %>
+
+
+
 </body>
+<script>
+
+</script>
 </html>

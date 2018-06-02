@@ -31,24 +31,29 @@ server.get("/", (req, res) => {
     res.render("index", { requests: foundRequests });
   }).catch(err => console.log("there was an error"));
 });
- 
-server.get("/viewDetails/:id", (req, res)=> {
+   
+
+server.get("/viewDetails/:id", (req, res) => {
   const CSRId = req.params.id;
-  CSR.findById({ _id: CSRId },(err, foundRequest) => {
-    console.log(foundRequest);
+
+  CSR.findById({ _id: CSRId }, (err, foundRequest) => {
     res.render("details", { brookdaleCrowdItem: foundRequest });
   }).catch(err => console.log("ERROR::", err));
 });
-       
+   
+
 server.post("/create_new", (req, res) => {
   const newCSR = new CSR(req.body);
   newCSR.save().then(data => {
     res.redirect("/");
   });
 });
+   
+ 
  
 server.post("/fund_request/:id", (req, res) => {
   const CSRId = req.params.id;
+  // console.log('CSRId: ', CSRId);
   const newFunding = req.body;
 
   CSR.findByIdAndUpdate(
@@ -56,10 +61,10 @@ server.post("/fund_request/:id", (req, res) => {
     { $push: { CONTRIBUTIONS: newFunding } },
     { new: true },
     (err, updatedRequest) => {
-      console.log(updatedRequest);
+      // console.log("look at me :::::", updatedRequest);
       res.redirect("/");
     }
   );
-  console.log(newFunding, CSRId);
+  // console.log(newFunding, CSRId);
 });
 server.listen(PORT, () => console.log(`Listening on ${PORT}`));
