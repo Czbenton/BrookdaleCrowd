@@ -7,19 +7,26 @@ function showCreateModal() {
     focus: true
   });
 }
-
+         
 function viewRequestDetails(index) {
   console.log(requests, index);
   selectedRequest = requests[index];
   console.log(selectedRequest);
-  $("#username").html(selectedRequest.username);
-  $("#summary").html(selectedRequest.summary);
+  $("#detailsFirstName").html(selectedRequest.FIRST_NAME);
+  $("#detailsLastName").html(selectedRequest.LAST_NAME);
+  $("#detailsSummary").html(selectedRequest.CSR_SUMMARY);
+  $("#detailsBusinessValue").html(selectedRequest.CSR_BUSINESS_VALUE);
+  $("#detailsPayForward").html(selectedRequest.CSR_PAY_FORWARD_DESC);
+  $("#detailsFundingAmtReq").html(selectedRequest.CSR_FUNDING_AMT_REQ);
+  $("#detailsFundingDeadline").html(selectedRequest.CSR_FUNDING_DEADLINE);
+  $("#contributions").html(selectedRequest.CONTRIBUTIONS);
+  
   $("#detailsModal").modal({
     backdrop: false,
     focus: true
   });
 }
-
+ 
 function fundRequest(id) {
   const form = document.getElementById("fundForm");
   form.action = `/fund_request/${selectedRequest._id}`;

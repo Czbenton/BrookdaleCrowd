@@ -1,53 +1,67 @@
-    <div id="createModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <%- include('./createNew') %>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="close('createModal')" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="createNew()">Save changes</button>
-                </div>
+<!--create modal-->
+<div id="createModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">New Brookdale Crowd Request</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <%- include('./createNew') %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-danger" onclick="close('createModal')" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline-primary" onclick="createNew()">Get Funded!!</button>
             </div>
         </div>
     </div>
+</div>
 
 
+<!--details modal-->
+<div id="detailsModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Brookdale Crowd Request Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="detailsArea">
+                    <div style="display: flex; justify-content: flex-start">
+                        <h2 id="detailsFirstName"></h2>
+                        &nbsp;
+                        <h2 id="detailsLastName"></h2>
+                    </div>
+                    <p id="detailsSummary"></p>
+                    <p id="detailsBusinessValue"></p>
+                    <p id="sumdetailsPayForwardmary"></p>
+                    <p id="detailsFundingAmtReq"></p>
+                    <p id="detailsFundingDeadline"></p>
+                    <p id="contributions"></p>
+                </div>
 
-    <div id="detailsModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Request Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div id="currentFundingAmountDisplay">
+                    <h1>
+                        <div>
+                        A NUMBER
+                        </div>
+                    </h1>
                 </div>
-                <div class="modal-body">
-                    <div>
-                        <h1 id="username"></h1>
-                        <p id="summary"></p>
-                    </div>  
-                    <form id="fundForm" method="POST">
-                        <h1>PUT FORM HERE</h1>
-                        <h2>Use button below to submit form</h2>
-                        <input name="FUNDER_FIRST_NAME" type="text" placeholder="Enter your name">
-                        <input name="FUNDER_LAST_NAME" type="text" placeholder="Enter your name">
-                        <input name="FUNDER_USERNAME" type="text" placeholder="Enter your name">
-                        <label for="">How much do you want to contribute</label>
-                        <input name="FUNDING_AMT" type="number">
-                    </form>
+
+                <div>
+                <h5>Fill out form below to fund this Brookdale Crowd request.</h5>
+                <%- include('./fundingForm') %>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="close('detailsModal')" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="fundRequest()">Save changes</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-danger" onclick="close('detailsModal')" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline-primary" onclick="fundRequest()">Fund now!!</button>
             </div>
         </div>
     </div>
+</div>

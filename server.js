@@ -38,7 +38,7 @@ server.post("/create_new", (req, res) => {
     res.redirect("/");
   });
 });
-
+ 
 server.post("/fund_request/:id", (req, res) => {
   const CSRId = req.params.id;
   const newFunding = req.body;
