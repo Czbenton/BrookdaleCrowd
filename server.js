@@ -34,6 +34,10 @@ server.get("/viewDetails/:id", (req, res) => {
   }).catch(err => console.log("ERROR WITH GET'/VIEWDETAILS/ID': ", err));
 });
 
+server.get("/faq",(req,res)=>{
+res.render("faq");
+});
+
 server.post("/create_new", (req, res) => {
   const newCSR = new CSR(req.body);
   newCSR.save().then(data => {

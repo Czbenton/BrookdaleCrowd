@@ -23,3 +23,4 @@ function createNew() {
   form.submit();
   $("#createModal").modal.hide();
 }
+

@@ -19,11 +19,9 @@
 .brookdaleBtn:hover {
   background-color: #f9642a !important;
 }
-.displayInline{
-    display: inline;
+.displayInline {
+  display: inline;
 }
-
-
 
 /* Beta ribbon */
 .corner-ribbon {
@@ -53,3 +51,4 @@
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+
