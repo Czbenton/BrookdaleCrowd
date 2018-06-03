@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<%- include('./partials/header') %>
-
+    <%- include('./partials/head') %>
+    <%- include('./partials/navBar') %>
 <body>    
-    <h1>Brookdale Crowd - Fund your learning and development</h1>
+    <div class="container  shadow">
+        <div class="row mt-2">
+            <img class="img-fluid mx-auto" src="/images/logo.png" alt="BrookdaleCrowdLogo.png">
+        </div>
+        <div class="row mb-5">
+            <div class="col mb-2 text-center">    
+                <h1 class="pageTitle">Fund your learning and development</h1>
+                <button class="btn btn-lg btn-primary brookdaleBtn" onclick="showCreateModal()">Join the crowd!</button>
+            </div>
+        </div>
+    </div>
 
-    <button class="btn btn-lg btn-primary" onclick="showCreateModal()">Join the crowd!</button>
-
-    <h1 style="border-bottom: 3px solid black">Active Crowdsource Requests</h1>
-    <% for(var i=0; i < requests.length; i++) { %>
-        <ul class="list-group">
-            <%if (requests[i].CSR_STATUS == 'pending') { %>
-                <li class="list-group-item">
-                    <%= requests[i].FIRST_NAME%>
-                    <%= requests[i].LAST_NAME %> 
-                    :
-                    <%= requests[i].CSR_SUMMARY %> 
-                    <br>
-                    <form action="/viewDetails/<%= requests[i]._id %>" method="GET">
-                        <button class="btn btn-sm btn-info">View Details</button>
-                    </form>
-                </li>
-            <% } %>
-            </ul> 
-    <% }%>
-
+    <div id="activeCSRs" class="container shadow">
+        <div class="row mb-5">
+            <div class="col mb-2">
+                <h1 class="h1SectionTitle display-4">Active CSRs</h1>
+                <% for(var i=0; i < requests.length; i++) { %>
+                    <ul class="list-group">     
+                        <%if (requests[i].CSR_STATUS == 'pending') { %>
+                            <li class="list-group-item">
+                                <h5 class="displayInline"><%= requests[i].FIRST_NAME%></h5>
+                                <h5 class="displayInline"><%= requests[i].LAST_NAME %> -</h5>
+                                <h6 class="displayInline">Summary: </h6>
+                                <%= requests[i].CSR_SUMMARY %> 
+                                <br>
+                                <form action="/viewDetails/<%= requests[i]._id %>" method="GET">
+                                    <button class="btn btn-sm btn-info brookdaleBtn">Details</button>
+                                </form>
+                            </li>
+                        <% } %>
+                    </ul> 
+                <% }%>          
+            </div>
+        </div>
+    </div>
+    
     <%- include('./partials/modals') %>
 
-    <h1 style="border-bottom: 3px solid black">Inactive CSRs</h1>
-    <% for(var i=0; i < requests.length; i++) { %>
-        <ul class="list-group">
-            <%if (requests[i].CSR_STATUS != 'pending') { %>
-                <li class="list-group-item">
-                    <%= requests[i].FIRST_NAME%>
-                    <%= requests[i].LAST_NAME %> 
-                    :
-                    <%= requests[i].CSR_SUMMARY %> 
-                    <br>
-                    <form action="/viewDetails/<%= requests[i]._id %>" method="GET">
-                        <button class="btn btn-sm btn-info">View Details</button>
-                    </form>
-                </li>
-            <% } %>            
-         </ul> 
-    <% }%>
+    <div id="inactiveCSRs" class="container shadow">
+        <div class="row">
+            <div class="col mb-2">
+                <h1 class="h1SectionTitle display-4">Inactive CSRs</h1>
+                <% for(var i=0; i < requests.length; i++) { %>
+                    <ul class="list-group">
+                        <%if (requests[i].CSR_STATUS != 'pending') { %>
+                            <li class="list-group-item">
+                                <h5 class="displayInline"><%= requests[i].FIRST_NAME%></h5>
+                                <h5 class="displayInline"><%= requests[i].LAST_NAME %> -</h5>
+                                <h6 class="displayInline">Summary: </h6>
+                                <%= requests[i].CSR_SUMMARY %> 
+                                <br>
+                                <form action="/viewDetails/<%= requests[i]._id %>" method="GET">
+                                    <button class="btn btn-sm btn-info brookdaleBtn">Details</button>
+                                </form>
+                            </li>
+                        <% } %>            
+                    </ul> 
+                <% }%>
+            </div>
+        </div>
+    </div>
 
 <script>
     var requests = <%- JSON.stringify(requests) %>;
 </script>
-
 </body>
-
 </html>

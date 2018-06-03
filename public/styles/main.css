@@ -1,0 +1,55 @@
+#myColorPallet {
+  color: #239f64;
+  color: #0e7747;
+  color: #6faa89;
+  color: #084b84;
+  color: #00539b;
+  color: #f9642a;
+}
+.pageTitle {
+  color: #084b84;
+}
+.h1SectionTitle {
+  color: #084b84;
+  border-bottom: 3px solid #084b84;
+}
+.brookdaleBtn {
+  background-color: #084b84 !important;
+}
+.brookdaleBtn:hover {
+  background-color: #f9642a !important;
+}
+.displayInline{
+    display: inline;
+}
+
+
+
+/* Beta ribbon */
+.corner-ribbon {
+  width: 200px;
+  background: #f9642a;
+  position: absolute;
+  top: 25px;
+  left: -50px;
+  text-align: center;
+  line-height: 50px;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  z-index: 99999;
+}
+.corner-ribbon.sticky {
+  position: fixed;
+}
+.corner-ribbon.shadow {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+.corner-ribbon.top-right {
+  top: 25px;
+  right: -50px;
+  left: auto;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
