@@ -9,8 +9,10 @@
       
         <button class="btn btn-lg btn-primary" onclick="showCreateModal()">Join the crowd!</button>
 
-        <h1>Active Crowdsource Requests</h1>
-        <h6 style="fixThisWithCSS">___________________________</h6>
+        <h1 style="border-bottom: 3px solid black">Active Crowdsource Requests</h1>
+        
+
+        
         <% for(var i=0; i < requests.length; i++) { %>
             <ul class="list-group">
                 <li class="list-group-item">
@@ -28,6 +30,8 @@
         <% }%>
 
     <%- include('./partials/modals') %>
+
+    <h1>Inactive CSRs</h1>
     
     <script>
         var requests = <%- JSON.stringify(requests) %>;

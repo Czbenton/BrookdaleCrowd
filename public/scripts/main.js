@@ -1,4 +1,4 @@
-showCreateModal();
+// showCreateModal();
 let selectedRequest = {};
 
 function showCreateModal() {
@@ -8,6 +8,24 @@ function showCreateModal() {
   });
 }
          
+function createNew() {
+  const form = document.getElementById("createRequestForm");
+  form.submit();
+  $("#createModal").modal.hide();
+}
+
+function closeModal(id) {
+  $(id).modal.hide();
+}
+
+function showCloseCSRModal() {
+  $("#closeCSRModal").modal({
+    backdrop: false,
+    focus: true
+  });
+}
+
+
 // function viewRequestDetails(index) {
 //   console.log(requests, index);
 //   selectedRequest = requests[index];
@@ -41,13 +59,3 @@ function showCreateModal() {
 //   form.submit();
 //   // $("#detailsModal").modal.hide();
 // }
-   
-function createNew() {
-  const form = document.getElementById("createRequestForm");
-  form.submit();
-  $("#createModal").modal.hide();
-}
-
-function closeModal(id) {
-  $(id).modal.hide();
-}

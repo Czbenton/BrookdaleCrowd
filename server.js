@@ -1,3 +1,4 @@
+//Constants
 const express = require("express");
 const server = express();
 const PORT = process.env.PORT || 9876;
@@ -6,41 +7,36 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const path = require("path");
 const CSR = require("./models/CrowdSourceRequest");
-mongoose.connect("mongodb://localhost/Brookdale_Crowd");
 
+//Middleware
+mongoose.connect("mongodb://localhost/Brookdale_Crowd");
 server.set("view engine", "ejs");
 server.set("views", "./views");
 server.use(logger("dev"));
 server.use(bodyParser.urlencoded({ extended: false }));
-
-// const myRequest = new CSR({ name: "Tanner", age: 34 });
-// myRequest.save().then(data => console.log(data));
-
 server.use(express.static("./public"));
 
-// server.get("/", function(req, res) {
-//   res.render("index");
-// });
+//Routes
+server.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 server.get("/", (req, res) => {
   CSR.find((err, foundRequests) => {
-    // console.log(data);
-    if (!foundRequests) {
-      foundRequests = { name: "none found" };
-    }
     res.render("index", { requests: foundRequests });
   }).catch(err => console.log("there was an error"));
 });
-   
 
 server.get("/viewDetails/:id", (req, res) => {
   const CSRId = req.params.id;
 
   CSR.findById({ _id: CSRId }, (err, foundRequest) => {
-    res.render("details", { brookdaleCrowdItem: foundRequest });
+    res.render("details", {
+      brookdaleCrowdItem: foundRequest,
+      currentTotalFundingAmt: totalAllFundingContributions(
+        foundRequest.CONTRIBUTIONS
+      )
+    });
   }).catch(err => console.log("ERROR::", err));
 });
-   
 
 server.post("/create_new", (req, res) => {
   const newCSR = new CSR(req.body);
@@ -48,12 +44,9 @@ server.post("/create_new", (req, res) => {
     res.redirect("/");
   });
 });
-   
- 
- 
+
 server.post("/fund_request/:id", (req, res) => {
   const CSRId = req.params.id;
-  // console.log('CSRId: ', CSRId);
   const newFunding = req.body;
 
   CSR.findByIdAndUpdate(
@@ -61,10 +54,45 @@ server.post("/fund_request/:id", (req, res) => {
     { $push: { CONTRIBUTIONS: newFunding } },
     { new: true },
     (err, updatedRequest) => {
-      // console.log("look at me :::::", updatedRequest);
       res.redirect("/");
     }
   );
-  // console.log(newFunding, CSRId);
 });
-server.listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+server.post("/closeCSR/success/:id", (req, res) => {
+
+  CSR.findByIdAndUpdate(
+    { _id: req.params.id },
+    { $set: { CSR_STATUS: "funded", CSR_STATUS_MESSAGE: req.body.CSR_STATUS_MESSAGE } },
+    { new: true },
+    (err, updatedRequest) => {
+      res.redirect("/");
+    }
+  );
+});
+
+server.post("/closeCSR/failed/:id", (req, res) => {
+  CSR.findByIdAndUpdate(
+    { _id: req.params.id },
+    { $set: { CSR_STATUS: "failed", CSR_STATUS_MESSAGE: req.body.CSR_STATUS_MESSAGE } },
+    { new: true },
+    (err, updatedRequest) => {
+      res.redirect("/");
+    }
+  );
+});
+
+//Helper functions
+function totalAllFundingContributions(contributions) {
+  let contributionsArr = [];
+  let total;
+  contributions.forEach(e => {
+    let fundAmt = parseInt(e.FUNDING_AMT);
+    if (!isNaN(parseInt(fundAmt))) {
+      contributionsArr.push(parseInt(fundAmt));
+    }
+    total = contributionsArr.reduce((a, b) => a + b);
+  });
+
+  return total;
+}

@@ -13,25 +13,28 @@
     <%= brookdaleCrowdItem.CSR_FUNDING_AMT_REQ%><br>
     <%= brookdaleCrowdItem.CSR_FUNDING_DEADLINE%><br>
 
-
-<div class="card ">
-    <div class="card-header">
-    Contributors
+    <div>
+        <h2 style="display: inline;">Total amount funded so far: $</h2>
+        <h2 style="display: inline;"><%= currentTotalFundingAmt%></h2>
     </div>
-    <div class="card-body">
+
+
+<h3>Contributors</h3>
+<div style="width: 40%">
         <ul class="list-group">
             <% for(var i=0; i < brookdaleCrowdItem.CONTRIBUTIONS.length; i++) { %>
                 <li class="list-group-item">
                     <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_FIRST_NAME%>
                     <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_LAST_NAME%>
+                    : pledged $<%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDING_AMT%>
                 </li>
             <% }%>
         </ul> 
-    </div>
 </div>
 
-<div style="width: 50%;">
-    <h1>________________</h1>
+
+<div style="width: 40%;">
+    <h3>Fill out the form below to help fund this request</h3>
     <%- include('./partials/fundingForm') %>
 </div>
 
@@ -42,10 +45,10 @@
     </div>
   <% } %>
 
-
-
+  <div style="display: flex; justify-content: flex-end">
+    <button type="button" class="btn btn-sm btn-danger" onclick="showCloseCSRModal()">Close Crowd Request </button>
+  </div>
+  <%- include('./partials/closeCSRModal') %>
 </body>
-<script>
 
-</script>
 </html>
