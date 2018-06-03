@@ -4,8 +4,10 @@ move any inlne styles to a css sheet
 
 get logo figured out
 
-use css or html to add $$ in needed inputs
-
-make an FAQ page to help answer questions
-
 add a router??
+
+js to compare the deadline to current date and automatically end the request
+
+js to compare the current funding amount to the requested amount and end the request OR just change green
+
+show amount remaing to be funded on the active list??

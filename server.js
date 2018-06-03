@@ -24,7 +24,7 @@ server.get("/", (req, res) => {
     res.render("index", { requests: foundRequests });
   }).catch(err => console.log("ERROR WITH GET'/': ", err));
 });
-
+ 
 server.get("/viewDetails/:id", (req, res) => {
   CSR.findById({ _id: req.params.id }, (err, foundRequest) => {
     res.render("details", {

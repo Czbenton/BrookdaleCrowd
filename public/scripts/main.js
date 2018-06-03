@@ -14,13 +14,14 @@ function showCloseCSRModal() {
   });
 }
 
-function closeModal(id) {
-  $(id).modal.hide();
-}
+//is this being used??
+// function closeModal(id) {
+//   $(id).modal.hide();
+// }
 
-function createNew() {
-  const form = document.getElementById("createRequestForm");
-  form.submit();
+function closeCreateModal() {
+  // const form = document.getElementById("createRequestForm");
+  // form.submit();
   $("#createModal").modal.hide();
 }
 

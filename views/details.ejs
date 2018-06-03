@@ -5,51 +5,111 @@
 
 <body>
 <%- include('./partials/navBar') %>
-        <%= brookdaleCrowdItem._id%>
-    <%= brookdaleCrowdItem.FIRST_NAME%> <br>
-    <%= brookdaleCrowdItem.LAST_NAME%><br>
-    <%= brookdaleCrowdItem.CSR_SUMMARY%><br>
-    <%= brookdaleCrowdItem.CSR_BUSINESS_VALUE%><br>
-    <%= brookdaleCrowdItem.CSR_PAY_FORWARD_DESC%><br>
-    <%= brookdaleCrowdItem.CSR_FUNDING_AMT_REQ%><br>
-    <%= brookdaleCrowdItem.CSR_FUNDING_DEADLINE%><br>
 
-    <div>
-        <h2 style="display: inline;">Total amount funded so far: $</h2>
-        <h2 style="display: inline;"><%= currentTotalFundingAmt%></h2>
+ <div id="activeCSRs" class="container shadow">
+    <div class="row mb-5 mt-2">
+        <div class="col mb-2">
+            <div class="mb-3">
+                <dt> Who wants funding? </dt>
+                <dd class="displayInline text-capitalize"> 
+                    <%= brookdaleCrowdItem.FIRST_NAME%> 
+                    <%= brookdaleCrowdItem.LAST_NAME%> 
+                </dd>
+                <p class="displayInline">(<%= brookdaleCrowdItem.USERNAME%>)</p>
+            </div>
+            <div class="mb-3">
+                <dt>What is <span class="text-capitalize"><%= brookdaleCrowdItem.FIRST_NAME%></span> asking to fund?</dt>
+                <dd><%= brookdaleCrowdItem.CSR_SUMMARY%></dd>
+            </div>
+            <div class="mb-3">
+                <dt>What business value will this funding add?</dt>
+                <dd><%= brookdaleCrowdItem.CSR_BUSINESS_VALUE%></dd>
+            </div>
+            <div class="mb-3">
+                <dt>How will <%= brookdaleCrowdItem.FIRST_NAME%> pay it forward?</dt>
+                <dd><%= brookdaleCrowdItem.CSR_PAY_FORWARD_DESC%></dd>
+            </div>
+            <div class="mb-3">
+                <dt>How much is needed for funding?</dt>
+                <dd>$<%= brookdaleCrowdItem.CSR_FUNDING_AMT_REQ%></dd>
+            </div>
+            <div class="mb-3">
+                <dt>What is the deadline?</dt>
+                <dd><%= brookdaleCrowdItem.CSR_FUNDING_DEADLINE%></dd>
+            </div>
+        </div>
     </div>
-
-
-<h3>Contributors</h3>
-<div style="width: 40%">
-        <ul class="list-group">
-            <% for(var i=0; i < brookdaleCrowdItem.CONTRIBUTIONS.length; i++) { %>
-                <li class="list-group-item">
-                    <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_FIRST_NAME%>
-                    <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_LAST_NAME%>
-                    : pledged $<%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDING_AMT%>
-                </li>
-            <% }%>
-        </ul> 
 </div>
 
+<div id="activeCSRs" class="container shadow">
+    <div class="row mb-5 ">
+        <div class="col mb-2">
+                <div class="row justify-content-md-center">
+                    <dt class="text-capitalize">Total amount funded</dt>
+                </div>
+                    <div class="row justify-content-md-center">
+                    <h1 class="display-3 mb-5">
+                        <% if (currentTotalFundingAmt) { %>
+                            $ <%= currentTotalFundingAmt%>
+                        <% } %>
+                        <% if (!currentTotalFundingAmt) { %>
+                            $ 0
+                        <% } %>
+                    </h1>
+                </div>
+            <div style="width: 25%">
+                    <% if (currentTotalFundingAmt) { %>
+                <h3>Contributors</h3>
+                <% } %>
 
-<div style="width: 40%;">
-    <h3>Fill out the form below to help fund this request</h3>
-    <%- include('./partials/fundingForm') %>
+                <ul class="list-group">
+                    <% for(var i=0; i < brookdaleCrowdItem.CONTRIBUTIONS.length; i++) { %>
+                        <li class="list-group-item">
+                          <span class="text-capitalize">  <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_FIRST_NAME%> </span>
+                          <span class="text-capitalize">  <%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDER_LAST_NAME%> </span>
+                            pledged $<%= brookdaleCrowdItem.CONTRIBUTIONS[i].FUNDING_AMT%>
+                        </li>
+                    <% }%>
+                </ul> 
+            </div>
+        </div>
+    </div>
 </div>
+
+<% if (!brookdaleCrowdItem.CSR_STATUS_MESSAGE) { %>
+    <div id="activeCSRs" class="container shadow">
+        <div class="row mb-5 ">
+            <div class="col mb-2">
+                <div style="width: 40%;">
+                    <h3>Fill out below to contribute</h3>
+                    <%- include('./partials/fundingForm') %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
 
 <% if (brookdaleCrowdItem.CSR_STATUS_MESSAGE) { %>
-    <div>
-        <p>Funding Status: <%= brookdaleCrowdItem.CSR_STATUS%> </p>
-        <p>Comments: <%= brookdaleCrowdItem.CSR_STATUS_MESSAGE%></p>
+    <div id="activeCSRs" class="container shadow">
+        <div class="row mb-5 ">
+            <div class="col mb-2">
+                <div>
+                    <dt>Funding Status:</dt>
+                    <dd class="text-capitalize"> <%= brookdaleCrowdItem.CSR_STATUS%> </dd>
+                    <dt>Comments:</dt> 
+                    <dd> <%= brookdaleCrowdItem.CSR_STATUS_MESSAGE%> </dd>
+                </div>      
+            </div>
+        </div>  
     </div>
-  <% } %>
+<% } %>
 
-  <div style="display: flex; justify-content: flex-end">
-    <button type="button" class="btn btn-sm btn-danger" onclick="showCloseCSRModal()">Close Crowd Request </button>
-  </div>
-  <%- include('./partials/closeCSRModal') %>
+<% if (!brookdaleCrowdItem.CSR_STATUS_MESSAGE) { %>
+    <div style="display: flex; justify-content: flex-end">
+        <button type="button" class="btn btn-lg btn-danger" onclick="showCloseCSRModal()">Close Crowd Request </button>
+    </div>
+<% } %>
+<%- include('./partials/closeCSRModal') %>
 </body>
 
 </html>

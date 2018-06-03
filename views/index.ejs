@@ -9,7 +9,7 @@
         </div>
         <div class="row mb-5">
             <div class="col mb-2 text-center">    
-                <h1 class="pageTitle">Fund your learning and development</h1>
+                <h1 class="pageTitle">Fund Your Learning And Development</h1>
                 <button class="btn btn-lg btn-primary brookdaleBtn" onclick="showCreateModal()">Join the crowd!</button>
             </div>
         </div>
@@ -19,12 +19,16 @@
         <div class="row mb-5">
             <div class="col mb-2">
                 <h1 class="h1SectionTitle display-4">Active CSRs</h1>
+                <% if (requests.length < 1) { %>
+                    No active requests
+                <% } %>
+
                 <% for(var i=0; i < requests.length; i++) { %>
                     <ul class="list-group">     
                         <%if (requests[i].CSR_STATUS == 'pending') { %>
                             <li class="list-group-item">
-                                <h5 class="displayInline"><%= requests[i].FIRST_NAME%></h5>
-                                <h5 class="displayInline"><%= requests[i].LAST_NAME %> -</h5>
+                                <h5 class="displayInline text-capitalize"><%= requests[i].FIRST_NAME%></h5>
+                                <h5 class="displayInline text-capitalize"><%= requests[i].LAST_NAME %> -</h5>
                                 <h6 class="displayInline">Summary: </h6>
                                 <%= requests[i].CSR_SUMMARY %> 
                                 <br>
@@ -49,8 +53,8 @@
                     <ul class="list-group">
                         <%if (requests[i].CSR_STATUS != 'pending') { %>
                             <li class="list-group-item">
-                                <h5 class="displayInline"><%= requests[i].FIRST_NAME%></h5>
-                                <h5 class="displayInline"><%= requests[i].LAST_NAME %> -</h5>
+                                <h5 class="displayInline text-capitalize"><%= requests[i].FIRST_NAME%></h5>
+                                <h5 class="displayInline text-capitalize"><%= requests[i].LAST_NAME %> -</h5>
                                 <h6 class="displayInline">Summary: </h6>
                                 <%= requests[i].CSR_SUMMARY %> 
                                 <br>
