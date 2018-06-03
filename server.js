@@ -24,18 +24,20 @@ server.get("/", (req, res) => {
     res.render("index", { requests: foundRequests });
   }).catch(err => console.log("ERROR WITH GET'/': ", err));
 });
- 
+
 server.get("/viewDetails/:id", (req, res) => {
   CSR.findById({ _id: req.params.id }, (err, foundRequest) => {
+    // let formattedDate = getFormattedDate(foundRequest.CSR_FUNDING_DEADLINE);
     res.render("details", {
       brookdaleCrowdItem: foundRequest,
-      currentTotalFundingAmt: totalAllFundingContributions(foundRequest.CONTRIBUTIONS)
+      currentTotalFundingAmt: totalAllFundingContributions(foundRequest.CONTRIBUTIONS),
+      formattedDate: getFormattedDate(foundRequest.CSR_FUNDING_DEADLINE)
     });
   }).catch(err => console.log("ERROR WITH GET'/VIEWDETAILS/ID': ", err));
 });
 
-server.get("/faq",(req,res)=>{
-res.render("faq");
+server.get("/faq", (req, res) => {
+  res.render("faq");
 });
 
 server.post("/create_new", (req, res) => {
@@ -100,4 +102,20 @@ function totalAllFundingContributions(contributions) {
     total = contributionsArr.reduce((a, b) => a + b);
   });
   return total;
+}
+
+function getFormattedDate(date) {
+  let month;
+  let day;
+  let year;
+
+  if ((date.getMonth() + 1) < 10) {
+    month = "0" + (date.getMonth() + 1);
+  }else month = (date.getMonth() + 1);
+
+  if (date.getDate() < 10) {
+    day = "0" + date.getDate();
+  }else day = date.getDate();
+
+  return month + "/" + day + "/" + date.getFullYear();
 }
