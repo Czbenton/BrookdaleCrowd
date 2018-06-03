@@ -22,20 +22,16 @@ server.listen(PORT, () => console.log(`Listening on ${PORT}`));
 server.get("/", (req, res) => {
   CSR.find((err, foundRequests) => {
     res.render("index", { requests: foundRequests });
-  }).catch(err => console.log("there was an error"));
+  }).catch(err => console.log("ERROR WITH GET'/': ", err));
 });
 
 server.get("/viewDetails/:id", (req, res) => {
-  const CSRId = req.params.id;
-
-  CSR.findById({ _id: CSRId }, (err, foundRequest) => {
+  CSR.findById({ _id: req.params.id }, (err, foundRequest) => {
     res.render("details", {
       brookdaleCrowdItem: foundRequest,
-      currentTotalFundingAmt: totalAllFundingContributions(
-        foundRequest.CONTRIBUTIONS
-      )
+      currentTotalFundingAmt: totalAllFundingContributions(foundRequest.CONTRIBUTIONS)
     });
-  }).catch(err => console.log("ERROR::", err));
+  }).catch(err => console.log("ERROR WITH GET'/VIEWDETAILS/ID': ", err));
 });
 
 server.post("/create_new", (req, res) => {
@@ -46,12 +42,9 @@ server.post("/create_new", (req, res) => {
 });
 
 server.post("/fund_request/:id", (req, res) => {
-  const CSRId = req.params.id;
-  const newFunding = req.body;
-
   CSR.findByIdAndUpdate(
-    { _id: CSRId },
-    { $push: { CONTRIBUTIONS: newFunding } },
+    { _id: req.params.id },
+    { $push: { CONTRIBUTIONS: req.body } },
     { new: true },
     (err, updatedRequest) => {
       res.redirect("/");
@@ -60,10 +53,14 @@ server.post("/fund_request/:id", (req, res) => {
 });
 
 server.post("/closeCSR/success/:id", (req, res) => {
-
   CSR.findByIdAndUpdate(
     { _id: req.params.id },
-    { $set: { CSR_STATUS: "funded", CSR_STATUS_MESSAGE: req.body.CSR_STATUS_MESSAGE } },
+    {
+      $set: {
+        CSR_STATUS: "funded",
+        CSR_STATUS_MESSAGE: req.body.CSR_STATUS_MESSAGE
+      }
+    },
     { new: true },
     (err, updatedRequest) => {
       res.redirect("/");
@@ -74,7 +71,12 @@ server.post("/closeCSR/success/:id", (req, res) => {
 server.post("/closeCSR/failed/:id", (req, res) => {
   CSR.findByIdAndUpdate(
     { _id: req.params.id },
-    { $set: { CSR_STATUS: "failed", CSR_STATUS_MESSAGE: req.body.CSR_STATUS_MESSAGE } },
+    {
+      $set: {
+        CSR_STATUS: "failed",
+        CSR_STATUS_MESSAGE: req.body.CSR_STATUS_MESSAGE
+      }
+    },
     { new: true },
     (err, updatedRequest) => {
       res.redirect("/");
@@ -93,6 +95,5 @@ function totalAllFundingContributions(contributions) {
     }
     total = contributionsArr.reduce((a, b) => a + b);
   });
-
   return total;
 }

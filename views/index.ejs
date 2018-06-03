@@ -3,18 +3,15 @@
 
 <%- include('./partials/header') %>
 
-<body>
-    
-        <h1>Brookdale Crowd - Fund your learning and development</h1>
-      
-        <button class="btn btn-lg btn-primary" onclick="showCreateModal()">Join the crowd!</button>
+<body>    
+    <h1>Brookdale Crowd - Fund your learning and development</h1>
 
-        <h1 style="border-bottom: 3px solid black">Active Crowdsource Requests</h1>
-        
+    <button class="btn btn-lg btn-primary" onclick="showCreateModal()">Join the crowd!</button>
 
-        
-        <% for(var i=0; i < requests.length; i++) { %>
-            <ul class="list-group">
+    <h1 style="border-bottom: 3px solid black">Active Crowdsource Requests</h1>
+    <% for(var i=0; i < requests.length; i++) { %>
+        <ul class="list-group">
+            <%if (requests[i].CSR_STATUS == 'pending') { %>
                 <li class="list-group-item">
                     <%= requests[i].FIRST_NAME%>
                     <%= requests[i].LAST_NAME %> 
@@ -23,19 +20,35 @@
                     <br>
                     <form action="/viewDetails/<%= requests[i]._id %>" method="GET">
                         <button class="btn btn-sm btn-info">View Details</button>
-                        <!-- <button class="btn btn-sm btn-info" onclick="viewRequestDetails( <%= i %> )">View Details</button> -->
                     </form>
                 </li>
-             </ul> 
-        <% }%>
+            <% } %>
+            </ul> 
+    <% }%>
 
     <%- include('./partials/modals') %>
 
-    <h1>Inactive CSRs</h1>
-    
-    <script>
-        var requests = <%- JSON.stringify(requests) %>;
-    </script>
+    <h1 style="border-bottom: 3px solid black">Inactive CSRs</h1>
+    <% for(var i=0; i < requests.length; i++) { %>
+        <ul class="list-group">
+            <%if (requests[i].CSR_STATUS != 'pending') { %>
+                <li class="list-group-item">
+                    <%= requests[i].FIRST_NAME%>
+                    <%= requests[i].LAST_NAME %> 
+                    :
+                    <%= requests[i].CSR_SUMMARY %> 
+                    <br>
+                    <form action="/viewDetails/<%= requests[i]._id %>" method="GET">
+                        <button class="btn btn-sm btn-info">View Details</button>
+                    </form>
+                </li>
+            <% } %>            
+         </ul> 
+    <% }%>
+
+<script>
+    var requests = <%- JSON.stringify(requests) %>;
+</script>
 
 </body>
 
