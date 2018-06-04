@@ -1,14 +1,14 @@
-<div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
-    <div style="height: 5rem; width: 100%">
-        <form style="display: flex; flex-direction: column" action="/closeCSR/success/<%= brookdaleCrowdItem._id%>" method="POST">
-            <input required type="text" name="CSR_STATUS_MESSAGE" width="100%" placeholder="Say thank you to everyone who helped fund this.">
-            <button style="width: 50%; align-self: center" type="submit" class="btn btn-lg btn-success">Funding Success!!</button>
+<div class="closeCSRSuccess">
+    <div>
+        <form action="/closeCSR/success/<%= brookdaleCrowdItem._id%>" method="POST">
+            <input required class="mb-1" type="text" name="CSR_STATUS_MESSAGE" width="100%" placeholder="Say thank you to everyone who helped fund this.">
+            <button type="submit" class="btn btn-lg btn-success">Funding Success!!</button>
         </form>
     </div>
-    <div style="height: 3rem; width: 100%">
-        <form style="display: flex; flex-direction: column" action="/closeCSR/failed/<%= brookdaleCrowdItem._id%>" method="POST">
-            <input required type="text" name="CSR_STATUS_MESSAGE" width="100%" placeholder="Please explain why you are closing this request.">
-            <button style="width: 50%; align-self: center" type="submit" class="btn btn-danger">Close Request</button>
+    <div class="closeCSRFail">
+        <form action="/closeCSR/failed/<%= brookdaleCrowdItem._id%>" method="POST">
+            <input required  class="mb-1" type="text" name="CSR_STATUS_MESSAGE" width="100%" placeholder="Please explain why you are closing this request.">
+            <button type="submit" class="btn btn-danger">Close Request</button>
         </form>
     </div>
 </div>

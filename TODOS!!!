@@ -1,15 +1,16 @@
 
+* allow edit of a request after it's saved
 
-move any inlne styles to a css sheet
+allow delete? 
 
-get logo figured out
-
-add a router??
+add a router for the server to be cleaner code?
 
 js to compare the deadline to current date and automatically end the request
 
-js to compare the current funding amount to the requested amount and end the request OR just change green
+js to compare the current funding amount to the requested amount and end the request -OR- just change green
 
-show amount remaing to be funded on the active list??
+show amount remaining to be funded on the active list??
 
-* allow edit of a request after it's saved
+message to users that their pledge was successfully submitted
+
+message to users that their request for funding was successfully logged

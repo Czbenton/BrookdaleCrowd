@@ -10,7 +10,6 @@
 .brookdaleBlue{
   color: #084b84;
 }
-
 .pageTitle {
   color: #084b84;
 }
@@ -27,15 +26,54 @@
 .displayInline {
   display: inline;
 }
- 
 dt {
   font-size: 2rem;
 }
-
 dd {
   font-size: 1.5rem;
 }
+.w-30{
+  width: 30%;
+}
+.flexRight{
+display: flex;
+justify-content: flex-end
+}
+.closeCSRSuccess{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* find a better way to do
+all this > > stuff with bootstrap */
+.closeCSRSuccess > div{
+height: 5rem;
+width: 100%;
+}
+.closeCSRSuccess > div > form{
+  display: flex;
+  flex-direction: column;
+}
+.closeCSRSuccess > div > form > button{
+  width: 50%;
+  align-self: center;
+}
 
+.closeCSRFail{
+  height: 3rem;
+  width: 100%;
+}
+
+.closeCSRFail > form{
+  display: flex;
+  flex-direction: column;
+}
+
+.closeCSRFail > form > button{
+width: 50%;
+align-self: center;
+}
 /* 
 Beta ribbon
 */

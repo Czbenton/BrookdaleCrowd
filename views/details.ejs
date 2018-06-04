@@ -57,7 +57,7 @@
                         <% } %>
                     </h1>
                 </div>
-            <div style="width: 25%">
+            <div class="w-25">
                     <% if (currentTotalFundingAmt) { %>
                 <h3>Contributors</h3>
                 <% } %>
@@ -80,7 +80,7 @@
     <div id="activeCSRs" class="container shadow">
         <div class="row mb-5 ">
             <div class="col mb-2">
-                <div style="width: 40%;">
+                <div class="w-30">
                     <h3>Fill out below to contribute</h3>
                     <%- include('./partials/fundingForm') %>
                 </div>
@@ -105,8 +105,8 @@
 <% } %>
 
 <% if (!brookdaleCrowdItem.CSR_STATUS_MESSAGE) { %>
-    <div style="display: flex; justify-content: flex-end">
-        <button type="button" class="btn btn-lg btn-danger" onclick="showCloseCSRModal()">Close Crowd Request </button>
+    <div class="flexRight">
+        <button type="button" class="m-1 btn btn-lg btn-danger" onclick="showCloseCSRModal()">Close Crowd Request </button>
     </div>
 <% } %>
 <%- include('./partials/closeCSRModal') %>
