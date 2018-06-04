@@ -14,6 +14,12 @@ function showCloseCSRModal() {
   });
 }
 
+function showEditCSRModal() {
+  $("#editCSRModal").modal({
+    backdrop: false,
+    focus: true
+  });
+}
 //is this being used??
 // function closeModal(id) {
 //   $(id).modal.hide();

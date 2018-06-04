@@ -106,10 +106,14 @@
 
 <% if (!brookdaleCrowdItem.CSR_STATUS_MESSAGE) { %>
     <div class="flexRight">
+            <button type="button" class="m-1 btn btn-lg btn-danger" onclick="showEditCSRModal()">Edit Crowd Request </button>
+    </div>
+    <div class="flexRight">
         <button type="button" class="m-1 btn btn-lg btn-danger" onclick="showCloseCSRModal()">Close Crowd Request </button>
     </div>
 <% } %>
 <%- include('./partials/closeCSRModal') %>
+<%- include('./partials/editCSRModal') %>
 
 </body>
 
