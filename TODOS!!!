@@ -11,3 +11,5 @@ js to compare the deadline to current date and automatically end the request
 js to compare the current funding amount to the requested amount and end the request OR just change green
 
 show amount remaing to be funded on the active list??
+
+* allow edit of a request after it's saved
