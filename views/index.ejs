@@ -18,7 +18,7 @@
     <div id="activeCSRs" class="container shadow">
         <div class="row mb-5">
             <div class="col mb-2">
-                <h1 class="h1SectionTitle display-4">Active CSRs</h1>
+                <h1 class="h1SectionTitle display-4">Active Requests</h1>
                 <% if (requests.length < 1) { %>
                     No active requests
                 <% } %>
@@ -48,7 +48,7 @@
     <div id="inactiveCSRs" class="container shadow">
         <div class="row">
             <div class="col mb-2">
-                <h1 class="h1SectionTitle display-4">Inactive CSRs</h1>
+                <h1 class="h1SectionTitle display-4">Inactive Requests</h1>
                 <% for(var i=0; i < requests.length; i++) { %>
                     <ul class="list-group">
                         <%if (requests[i].CSR_STATUS != 'pending') { %>
