@@ -16,12 +16,21 @@
         <textarea required id="summary" class="form-control" name="CSR_SUMMARY" cols="30" rows="5" placeholder="Please give a description of your Brookdale Crowd request."></textarea>
     </div>
     <div class="form-group">
-        <label for="value">Crowd Request Value</label>
+        <label for="value">Crowd Request Business Value</label>
         <textarea required id="value" class="form-control" name="CSR_BUSINESS_VALUE"  cols="30" rows="3" placeholder="Please describe how this Brookdale Crowd request will add business value."></textarea>
     </div>
     <div class="form-group">
         <label for="payF">Pay-It-Forward Description</label>
         <textarea required id="payF" class="form-control" name="CSR_PAY_FORWARD_DESC" cols="30" rows="5" placeholder="Please outline your plan on how you intend to Pay-It-Forward."></textarea>
+    </div>
+    <div class="form-group">
+        <label for="initAmt">Your Starting Amount</label>
+        <!--To make this happen, I think the /create_new route will have to get
+        more robust. Instead of saving the entire req.body to the db, it needs to 
+        ommit this particular field. Then grab the fields that  CONTRIBUTIONS needs
+        and push that as an additional step after the save.-->
+        <input required id="initAmt" class="form-control" type="number" name="CSR_FUNDING_AMT_REQ" placeholder="How much money will you be starting with?"
+            pattern="\d+">
     </div>
     <div class="form-group">
         <label for="amt">Funding Amount Goal</label>
